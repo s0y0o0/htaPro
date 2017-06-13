@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop.xsd">
+   
+   <!--공통 기능을 제공할 클래스를 빈으로 등록  -->
+   <bean id="exeTimeAspect" class="aop_xml.ExeTimeAspect"/>
+   
+   <bean id="impeCal" class="aop_xml.ImpeCalculator"/>
+   <bean id="recCal" class="aop_xml.RecCalculator"/>   
+   <bean id='beforeAdvice' class="aop_xml.BeforeAdvice"/>
+   <bean id='login' class='aop_xml.Login'/>
+   
+   <!--Aspect 설정 : Advice를 어떤 Pointcut에 적용할 지 설정 -->
+   <aop:config>
+      <aop:aspect id="measureAspect" ref="exeTimeAspect">
+         <aop:pointcut id="publicMethod"
+             expression="execution(* factorial(..))"/>
+         <aop:around pointcut-ref="publicMethod" method="measure"/>
+      </aop:aspect>
+      
+      
+      <aop:aspect id='beforeAspect' ref="beforeAdvice">
+         <aop:pointcut id="beforeMethod"
+             expression="execution(* loginCheck(..))" />
+             <aop:before pointcut-ref='beforeMethod' method="before"/>
+      </aop:aspect>
+   </aop:config>
+   
+</beans>

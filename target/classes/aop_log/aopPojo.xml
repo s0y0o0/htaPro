@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop.xsd">
+   
+   <!--공통 기능을 제공할 클래스를 빈으로 등록  -->
+   <bean id="exeTimeAspect" class="aop_xml.ExeTimeAspect"/>
+   
+   <bean id="login" class="aop_log.Login"/>
+   <bean id="logout" class="aop_log.Logout"/>   
+   <bean id='search' class="aop_log.Search">
+   	<constructor-arg value="Lee"/>
+   	<property name="findStr" value="검색어"/>
+   </bean>
+   
+   
+   <bean id='printlog' class='aop_log.PrintLog'/>
+   
+   <!--Aspect 설정 : Advice를 어떤 Pointcut에 적용할 지 설정 -->
+   <!-- printlog를 실행하기 전에 beforeMethod(printlog)실행 -->
+   <aop:config>
+      <aop:aspect id='beforeAspect' ref="printlog">
+         <aop:pointcut id="beforeMethod" expression="execution(* log(..))" />
+         <aop:before pointcut-ref='beforeMethod' method="before"/>
+      </aop:aspect>
+   </aop:config>
+   
+</beans>

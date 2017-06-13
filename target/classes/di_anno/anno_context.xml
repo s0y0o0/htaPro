@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      
+      ">
+
+	<context:annotation-config/>
+
+   <bean id="db" class="di_anno.DBConnect" />
+   <bean id="dao" class="di_anno.BoardDao">
+   	<constructor-arg ref='db'/>
+   </bean>
+
+	<bean id='m1' class="di_anno.Member">
+		<constructor-arg value='kim'/>
+	</bean>
+	
+	<bean id='m2' class="di_anno.Member">
+		<qualifier value='guest'/>
+		<constructor-arg value='hong'/>
+	</bean>
+	
+	<bean id='m3' class="di_anno.Member">
+		<constructor-arg value='park'/>
+	</bean>
+	
+	<bean id='autowire' class='di_anno.AutoWiredTest'/>
+	
+</beans>

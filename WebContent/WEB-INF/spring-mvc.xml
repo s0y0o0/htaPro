@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!--@Controller 애노테이션을 이용해 컨트롤러를 사용하기 위한 설정  -->
+	<mvc:annotation-driven />
+
+	<!--DispatcherServlet의 매핑 경로를 '/'로 주었을 때, JSP/HTML/CSS 등을 올바르게
+	    하기 위한 설정 -->
+	<mvc:default-servlet-handler />
+	<!--처리된 결과를 누구에게 전달을 할것인가.. 결과물들의 표시 페이지	 -->
+	<mvc:view-resolvers>
+	<!--JSP를 이용해서 컨트롤러의 실행 결과를 보여주기 위한 설정  -->
+		<mvc:jsp prefix="/begin/" />
+		<!--결과물이 표시되어야 할 경로가 /begin/라는 곳이다  -->
+	</mvc:view-resolvers>
+
+</beans>

@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//WebContent/mapping/map.jsp=UTF-8
+encoding//WebContent/mapping/map_result.jsp=UTF-8
+encoding//WebContent/wadda_page/main.jsp=UTF-8
+encoding//src/bean/MappingDao.java=UTF-8
+encoding//src/bean/WaddaDao.java=UTF-8
+encoding//src/servlet/WaddaServlet.java=UTF-8
